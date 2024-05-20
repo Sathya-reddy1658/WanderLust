@@ -10,7 +10,7 @@ const Review = require("./MOD/reviews.js");
 const { listingSchema, ReviewSchema } = require('./schema.js');
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError");
-
+const  cookieParser = require('cookie-parser');
 const MONGO_URL = 'mongodb://127.0.0.1:27017/AIR_BNB';
 
 app.set("view engine", "ejs");
@@ -19,6 +19,8 @@ app.engine('ejs', ejsMate);
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(cookieParser());
+
 
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/reviews.js");
@@ -35,6 +37,17 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
     res.send("ROOT PATH CONTACTED");
 });
+
+//--------------------------------------cookie-learn---------------------------------------//
+app.get("/set", (req, res) => {
+    res.cookie("name", "reddy", { maxAge: 900000, httpOnly: true, path: '/' }); // 15 minutes
+    res.send("Cookie has been set");
+});
+app.get("/see",(req,res)=>{
+    res.send(req.cookies);
+})
+//----------------------------------------------------------------------------------------//
+
 
 app.use("/listings/reviews/:id", reviews);
 app.use("/listings", listings);
