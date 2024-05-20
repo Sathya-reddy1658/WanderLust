@@ -5,7 +5,6 @@ const port = 2000;
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const path = require("path");
-
 const Listing = require("./MOD/listing.js");
 const Review = require("./MOD/reviews.js");
 const { listingSchema, ReviewSchema } = require('./schema.js');
@@ -37,7 +36,7 @@ app.get("/", (req, res) => {
     res.send("ROOT PATH CONTACTED");
 });
 
-app.use("/listings/reviews", reviews);
+app.use("/listings/reviews/:id", reviews);
 app.use("/listings", listings);
 
 app.all("*", (req, res, next) => {

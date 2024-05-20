@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const Listing = require("../MOD/listing.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const { listingSchema } = require('../schema.js');
@@ -42,9 +42,9 @@ router.get("/:id/edit", wrapAsync(async (req, res) => {
 }));
 
 router.put("/:id", validateListing, wrapAsync(async (req, res) => {
-    const { id } = req.params;
-    const listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-    res.redirect(`/listings/${listing._id}`);
+    let { id } = req.params;
+    await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    res.redirect(`/listings/${id}`);
 }));
 
 router.delete("/delete/:id", wrapAsync(async (req, res) => {

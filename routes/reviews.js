@@ -15,8 +15,7 @@ const validateReview = (req, res, next) => {
     next();
 }
 
-router.post("/:id", validateReview, wrapAsync(async (req, res) => {
-    console.log("hello bro");
+router.post("/", validateReview, wrapAsync(async (req, res) => {
     const listing = await Listing.findById(req.params.id);
     const newReview = new Review(req.body.review);
     listing.reviews.push(newReview);
@@ -25,7 +24,7 @@ router.post("/:id", validateReview, wrapAsync(async (req, res) => {
     res.redirect(`/listings/${listing._id}`);
 }));
 
-router.get("/:id/:reviewId", wrapAsync(async (req, res) => {
+router.get("/:reviewId", wrapAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
