@@ -1,0 +1,44 @@
+<% layout("layouts/boilerplate")%>
+
+    <div class="row ">
+        <div class="col-8 offset-2">
+            <form action="/listings" method="post" class="needs-validation" novalidate>
+                <h1>create new listing</h1>
+                <div class="mb-4">
+                    <lable for="title" class="form-label">Title</lable>
+                    <input name="listing[title]" type="text" placeholder="Add a catchy title" class="form-control" required>
+                    <div class="valid-feedback">sounds great!!</div>
+                </div>
+                <div class="mb-4">
+                    <lable for="description" class="form-label">Description</lable>
+                    <textarea name="listing[description]" placeholder="add description" class="form-control" required></textarea>
+                   <div class="valid-feedback">looks good!!</div>
+                   
+                </div>
+                <div class="mb-4">
+                    <lable for="image" class="form-label">Image-URL</lable>
+                    <input name="listing[url]" type="text" placeholder="enter image - URL" class=" form-control"  required>
+
+                </div>
+
+                <div class="row p-0">
+                    <div class="mb-4 col-md-4">
+                        <lable for="price" class="form-label">Price</lable>
+                        <input name="listing[price]" type="text"  class="form-control" required >
+                        <div class="invalid-feedback">please enter a valid price </div>
+                    </div>
+                    <div class="mb-4 col-md-8">
+                        <lable for="country" class="form-label">Country</lable>
+                        <input name="listing[country]" type="text" placeholder="e.g. India" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <lable for="location" class="form-label">Location</lable>
+                    <input name="listing[location]" type="text" placeholder=Hyderabad" class="form-control" required>
+                    <div class="invalid-feedback">Location field cannot be empty </div>
+                </div>
+                <button class="btn btn-primary add-btn">add</button>
+            </form>
+        </div>
+    </div>

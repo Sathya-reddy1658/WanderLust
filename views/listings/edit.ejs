@@ -1,0 +1,47 @@
+<% layout("layouts/boilerplate")%>
+<body >
+    <div class="row ">
+        <h1 style="text-align: center;">Edit Listing</h1>
+        <div class="col-8 offset-2">
+    <form action="/listings/<%=listing._id%>?_method=PUT" method="post" class="needs-validation" novalidate>
+        <div class="mb-4">
+            <lable for="title" class="form-label">Title</lable>
+            <input name="listing[title]" type="text" value="<%= listing.title %>" class="form-control" required>
+            <div class="valid-feedback">sounds great!!</div>
+        </div>
+        <div class="mb-4">
+            <lable for="description" class="form-label">Description</lable>
+            <textarea name="listing[description]" value="" class="form-control" required><%= listing.description %></textarea>
+            <div class="invalid-feedback">invalid title</div>
+        </div>
+        <div class="mb-4">
+            <lable for="image" class="form-label">Image-URL</lable>
+            <input name="listing[url]" type="text" value="<%= listing.url %>" class=" form-control" required>
+            <div class="invalid-feedback">invalid title</div>
+        </div>
+
+        <div class="row p-0">
+            <div class="mb-4 col-md-4">
+                <lable for="price" class="form-label">Price</lable>
+                <input name="listing[price]" type="text" value="<%= listing.price %>" class="form-control" required>
+                <div class="invalid-feedback">invalid price</div>
+            </div>
+            <div class="mb-4 col-md-8">
+                <lable for="country" class="form-label">Country</lable>
+                <input name="listing[country]" type="text" value="<%= listing.country %>" class="form-control" required>
+                <div class="invalid-feedback">invalid country</div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <lable for="location" class="form-label">Location</lable>
+            <input name="listing[location]" type="text" value="<%=listing.location%>" class="form-control" required>
+            <div class="invalid-feedback">invalid location</div>
+        </div>
+        <button type="submit" class="btn btn-primary add-btn mb-4">SAVE CHANGES</button>
+    </form>
+ 
+</div>
+</div>
+
+</body>
