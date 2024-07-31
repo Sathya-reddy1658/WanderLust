@@ -12,6 +12,8 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError");
 const  cookieParser = require('cookie-parser');
 const MONGO_URL = 'mongodb://127.0.0.1:27017/AIR_BNB';
+const session = require('express-session');
+const flash = require('connect-flash');
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -34,10 +36,29 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
+const  sessionOptions ={
+    secret:'mysuppersecret',
+    resave :false,
+    saveUninitialized:true,
+    cookie:{
+        expires :Date.now() + 7*24*60*60*1000,
+        maxAge : 7*24*60*60*1000,
+        hhtpOnly : true,
+    }
+}
+app.use(session(sessionOptions));
+app.use(flash());
+
 app.get("/", (req, res) => {
     res.send("ROOT PATH CONTACTED");
 });
 
+
+app.use((req,res,next)=>{
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+})
 //--------------------------------------cookie-learn---------------------------------------//
 app.get("/set", (req, res) => {
     res.cookie("name", "reddy", { maxAge: 900000, httpOnly: true, path: '/' }); // 15 minutes
