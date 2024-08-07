@@ -1,12 +1,14 @@
 <%if(success && success.length){%>
     <div id="container" class="d-flex justify-content-center align-items-center " style="height:100px;"">
-<p class="alert alert-success  text-center w-25  rounded-full alert-dismissible fade show" role="alert "><%=success%>
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </p>
-</div>
-<%}%>
-<%if(error && error.length){%>
-    <div id="container" class="d-flex justify-content-center align-items-center " style="height:100px;"">
-<p class="alert alert-success  text-center w-25  rounded-full alert-dismissible fade show" role="alert "><%=error%>
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </p>
-</div>
-<%}%>
+<p class=" alert alert-success text-center w-25 rounded-full alert-dismissible fade show" role="alert ">
+        <%=success%>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </p>
+    </div>
+    <%}%>
+        <%if(error && error.length){%>
+            <div id="container" class="d-flex justify-content-center align-items-center " style="height:100px;"">
+<p class=" alert alert-success text-center w-25 rounded-full alert-dismissible fade show" role="alert ">
+                <%=error%>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </p>
+            </div>
+            <%}%>
